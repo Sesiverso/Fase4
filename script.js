@@ -3,7 +3,7 @@ const words = [
     'Arara Azul', 'Arara Azul',
     'Boto Cor-de-Rosa', 'Boto Cor-de-Rosa',
     'Mico-leão-dourado', 'Mico-leão-dourado',
-    'S tamandua-bandeira', 'Tamanduá-bandeira',
+    'Tamanduá-bandeira', 'Tamanduá-bandeira',
     'Preguiça-de-três-dedos', 'Preguiça-de-três-dedos',
     'Capivara', 'Capivara',
     'Caiçara', 'Caiçara'
@@ -20,7 +20,7 @@ function createBoard() {
         const card = document.createElement('div');
         card.classList.add('card');
         card.dataset.word = word;
-        card.innerText = word;
+        card.innerHTML = `<div class="text">${word}</div>`;
         card.addEventListener('click', flipCard);
         gameBoard.appendChild(card);
     });
