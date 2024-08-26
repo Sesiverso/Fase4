@@ -30,10 +30,11 @@ h1 {
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.6s;
+    transform: rotateY(180deg); /* Mantém o verso visível inicialmente */
 }
 
 .card.show .card-inner {
-    transform: rotateY(180deg); /* Efeito de giro 3D */
+    transform: rotateY(0deg); /* Revela a frente da carta quando clicada */
 }
 
 .card-front,
@@ -79,4 +80,3 @@ h1 {
     display: block;
     margin-top: 5px;
 }
-
