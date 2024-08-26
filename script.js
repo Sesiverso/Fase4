@@ -1,4 +1,3 @@
-// URLs das imagens a serem usadas nas cartas
 const imageUrls = [
     'https://www.u-amazon.com/medias/general/2023/01/arara-de-caninde.jpg?w=auto&h=auto&fit=auto&crop=center',
     'https://www.petz.com.br/blog/wp-content/uploads/2021/10/animais-da-amazonia3.jpg',
@@ -50,11 +49,12 @@ function createBoard() {
 
 function flipCard() {
     if (selectedCards.length < 2 && !this.classList.contains('show')) {
+        this.classList.add('flip');
         this.classList.add('show');
         selectedCards.push(this);
 
         if (selectedCards.length === 2) {
-            checkMatch();
+            setTimeout(() => checkMatch(), 600); // Tempo de animação de virar
         }
     }
 }
@@ -69,8 +69,8 @@ function checkMatch() {
         selectedCards = [];
     } else {
         setTimeout(() => {
-            card1.classList.remove('show');
-            card2.classList.remove('show');
+            card1.classList.remove('show', 'flip');
+            card2.classList.remove('show', 'flip');
             selectedCards = [];
         }, 1000);
     }
@@ -88,3 +88,4 @@ function checkWin() {
 }
 
 createBoard();
+
