@@ -9,19 +9,19 @@ const cardsData = [
     { question: 'Povo tradicional da região litorânea da Amazônia', answer: 'Caiçara' }
 ];
 
-let cards = [];
+// Criação das cartas de perguntas e respostas
+const cards = cardsData.flatMap(card => [
+    { type: 'question', text: card.question, match: card.answer },
+    { type: 'answer', text: card.answer, match: card.question }
+]);
+
+cards.sort(() => 0.5 - Math.random()); // Embaralhar
+
 let selectedCards = [];
 let matchedCards = [];
 
 function createBoard() {
     const gameBoard = document.getElementById('game-board');
-
-    // Criar pares de cartas para perguntas e respostas
-    cards = cardsData.flatMap(card => [
-        { type: 'question', text: card.question, match: card.answer },
-        { type: 'answer', text: card.answer, match: card.question }
-    ])
-    .sort(() => 0.5 - Math.random()); // Embaralhar
 
     cards.forEach((card, index) => {
         const cardElement = document.createElement('div');
