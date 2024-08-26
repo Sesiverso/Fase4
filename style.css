@@ -1,12 +1,12 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #e0f2f1; /* Cor de fundo clara com tom tropical */
+    background-color: #f4f4f4;
 }
 
 h1 {
     margin-top: 20px;
-    color: #004d40; /* Verde escuro da Amazônia */
+    color: #333;
 }
 
 #game-board {
@@ -20,9 +20,8 @@ h1 {
 .card {
     width: 120px;
     height: 120px;
-    perspective: 1000px; /* Adicionado para efeito 3D */
+    perspective: 1000px;
     cursor: pointer;
-    animation: flipIn 1s forwards; /* Animação inicial */
 }
 
 .card-inner {
@@ -31,11 +30,10 @@ h1 {
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.6s;
-    transform: rotateY(180deg); /* Mantém o verso visível inicialmente */
 }
 
 .card.show .card-inner {
-    transform: rotateY(0deg); /* Revela a frente da carta quando clicada */
+    transform: rotateY(180deg);
 }
 
 .card-front,
@@ -54,40 +52,21 @@ h1 {
     padding: 10px;
     box-sizing: border-box;
     border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .card-front {
-    background-color: #a5d6a7; /* Verde claro da Amazônia */
+    background-color: #f4e1c1;
 }
 
 .card-back {
-    background-color: #004d40; /* Verde escuro para o verso */
+    background-color: #8bc34a;
     color: white;
-    transform: rotateY(180deg); /* Mantém o verso virado */
-    background-image: url('amazonia-pattern.png'); /* Imagem decorativa da Amazônia */
-    background-size: cover;
-    font-size: 18px; /* Texto maior para o verso */
+    transform: rotateY(180deg);
 }
 
-.card.matched .card-inner {
-    background-color: #fff;
-    color: #000;
-}
-
-.card img {
-    max-width: 80px;
-    max-height: 80px;
-    display: block;
-    margin-top: 5px;
-}
-
-/* Animação para girar as cartas */
-@keyframes flipIn {
-    from {
-        transform: rotateY(180deg);
-    }
-    to {
-        transform: rotateY(0deg);
-    }
+.card-image {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 5px;
 }
