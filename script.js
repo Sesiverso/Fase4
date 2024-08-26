@@ -26,7 +26,7 @@ function createBoard() {
         
         const cardFront = document.createElement('div');
         cardFront.classList.add('card-front');
-        cardFront.innerHTML = `<div class="text">${card.question}</div>`;
+        cardFront.innerHTML = `<div class="text">${card.answer}</div>`;
         
         const cardBack = document.createElement('div');
         cardBack.classList.add('card-back');
