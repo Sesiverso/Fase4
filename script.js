@@ -1,21 +1,15 @@
-const cardsData = [
-    { question: 'Animal famoso pintado', answer: 'Onça Pintada' },
-    { question: 'Ave colorida da Amazônia', answer: 'Arara Azul' },
-    { question: 'Golfinho de cor rosa encontrado na Amazônia', answer: 'Boto Cor-de-Rosa' },
-    { question: 'Primata de pelagem dourada da Amazônia', answer: 'Mico-leão-dourado' },
-    { question: 'Animal com focinho longo e grande cauda', answer: 'Tamanduá-bandeira' },
-    { question: 'Mamífero lento que vive nas árvores', answer: 'Preguiça-de-três-dedos' },
-    { question: 'Maior roedor do mundo, encontrado na Amazônia', answer: 'Capivara' },
-    { question: 'Povo tradicional da região litorânea da Amazônia', answer: 'Caiçara' }
+// URLs das imagens a serem usadas nas cartas
+const imageUrls = [
+    'https://www.u-amazon.com/medias/general/2023/01/arara-de-caninde.jpg?w=auto&h=auto&fit=auto&crop=center',
+    'https://www.petz.com.br/blog/wp-content/uploads/2021/10/animais-da-amazonia3.jpg',
+    'https://equadorviagens.com.br/wp-content/uploads/2018/09/Amazon-Animals.jpg',
+    'https://ogimg.infoglobo.com.br/in/23286915-be5-8db/FT1500A/690/80185060_SOCOnca-pintada-da-Amazonia.-1.jpg'
 ];
 
-// Criação das cartas de perguntas e respostas
-const cards = cardsData.flatMap(card => [
-    { type: 'question', text: card.question, match: card.answer },
-    { type: 'answer', text: card.answer, match: card.question }
-]);
+// Duplicando cada imagem para criar pares
+const cards = imageUrls.flatMap(url => [{ type: 'image', url }, { type: 'image', url }]);
 
-cards.sort(() => 0.5 - Math.random()); // Embaralhar
+cards.sort(() => 0.5 - Math.random()); // Embaralhar as cartas
 
 let selectedCards = [];
 let matchedCards = [];
@@ -32,11 +26,11 @@ function createBoard() {
         
         const cardFront = document.createElement('div');
         cardFront.classList.add('card-front');
-        cardFront.innerHTML = `<div class="text">${card.text}</div>`;
+        cardFront.innerHTML = '<div class="text">Amazônia</div>'; // Texto padrão para o verso
         
         const cardBack = document.createElement('div');
         cardBack.classList.add('card-back');
-        cardBack.innerHTML = '<div class="text">Amazônia</div>'; // Texto padrão para o verso
+        cardBack.innerHTML = `<img src="${card.url}" alt="Imagem da Amazônia" class="card-image">`;
         
         cardInner.appendChild(cardFront);
         cardInner.appendChild(cardBack);
@@ -67,16 +61,11 @@ function flipCard() {
 
 function checkMatch() {
     const [card1, card2] = selectedCards;
-    const text1 = card1.querySelector('.card-front .text').textContent;
-    const text2 = card2.querySelector('.card-front .text').textContent;
+    const image1 = card1.querySelector('.card-back img').src;
+    const image2 = card2.querySelector('.card-back img').src;
 
-    const isMatch = cardsData.some(card =>
-        (card.question === text1 && card.answer === text2) ||
-        (card.answer === text1 && card.question === text2)
-    );
-
-    if (isMatch) {
-        matchedCards.push(text1, text2);
+    if (image1 === image2) {
+        matchedCards.push(image1, image2);
         selectedCards = [];
     } else {
         setTimeout(() => {
