@@ -18,8 +18,8 @@ function createBoard() {
 
     // Criar pares de cartas para perguntas e respostas
     cards = cardsData.flatMap(card => [
-        { type: 'question', text: card.question },
-        { type: 'answer', text: card.answer }
+        { type: 'question', text: card.question, match: card.answer },
+        { type: 'answer', text: card.answer, match: card.question }
     ])
     .sort(() => 0.5 - Math.random()); // Embaralhar
 
@@ -72,7 +72,7 @@ function checkMatch() {
 
     const isMatch = cardsData.some(card =>
         (card.question === text1 && card.answer === text2) ||
-        (card.question === text2 && card.answer === text1)
+        (card.answer === text1 && card.question === text2)
     );
 
     if (isMatch) {
