@@ -1,12 +1,12 @@
-const words = [
-    'Onça Pintada', 'Onça Pintada',
-    'Arara Azul', 'Arara Azul',
-    'Boto Cor-de-Rosa', 'Boto Cor-de-Rosa',
-    'Mico-leão-dourado', 'Mico-leão-dourado',
-    'Tamanduá-bandeira', 'Tamanduá-bandeira',
-    'Preguiça-de-três-dedos', 'Preguiça-de-três-dedos',
-    'Capivara', 'Capivara',
-    'Caiçara', 'Caiçara'
+const cardsData = [
+    { question: 'Onça', answer: 'Animal da Amazônia muito conhecido' },
+    { question: 'Arara Azul', answer: 'Ave colorida da Amazônia' },
+    { question: 'Boto Cor-de-Rosa', answer: 'Golfinho de cor rosa encontrado na Amazônia' },
+    { question: 'Mico-leão-dourado', answer: 'Primata de pelagem dourada da Amazônia' },
+    { question: 'Tamanduá-bandeira', answer: 'Animal com focinho longo e grande cauda' },
+    { question: 'Preguiça-de-três-dedos', answer: 'Mamífero lento que vive nas árvores' },
+    { question: 'Capivara', answer: 'Maior roedor do mundo, encontrado na Amazônia' },
+    { question: 'Caiçara', answer: 'Povo tradicional da região litorânea da Amazônia' }
 ];
 
 let cards = [];
@@ -15,28 +15,29 @@ let matchedCards = [];
 
 function createBoard() {
     const gameBoard = document.getElementById('game-board');
-    cards = words.sort(() => 0.5 - Math.random());
-    cards.forEach((word, index) => {
-        const card = document.createElement('div');
-        card.classList.add('card');
+    cards = [...cardsData, ...cardsData] // Duplicar para criar pares
+        .sort(() => 0.5 - Math.random()); // Embaralhar
+    cards.forEach((card, index) => {
+        const cardElement = document.createElement('div');
+        cardElement.classList.add('card');
         
         const cardInner = document.createElement('div');
         cardInner.classList.add('card-inner');
         
         const cardFront = document.createElement('div');
         cardFront.classList.add('card-front');
-        cardFront.innerHTML = `<div class="text">${word}</div>`;
+        cardFront.innerHTML = `<div class="text">${card.question}</div>`;
         
         const cardBack = document.createElement('div');
         cardBack.classList.add('card-back');
-        cardBack.innerHTML = 'Amazônia';
+        cardBack.innerHTML = `<div class="text">Amazônia</div>`;
         
         cardInner.appendChild(cardFront);
         cardInner.appendChild(cardBack);
-        card.appendChild(cardInner);
+        cardElement.appendChild(cardInner);
         
-        card.addEventListener('click', flipCard);
-        gameBoard.appendChild(card);
+        cardElement.addEventListener('click', flipCard);
+        gameBoard.appendChild(cardElement);
     });
 }
 
@@ -70,7 +71,7 @@ function checkMatch() {
 }
 
 function checkWin() {
-    if (matchedCards.length === words.length / 2) {
+    if (matchedCards.length === cardsData.length) {
         setTimeout(() => {
             alert('Parabéns! Você ganhou!');
             document.getElementById('game-board').innerHTML = '';
