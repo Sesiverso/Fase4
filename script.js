@@ -9,17 +9,21 @@ const cardsData = [
     { question: 'Povo tradicional da região litorânea da Amazônia', answer: 'Caiçara' }
 ];
 
-// Duplicar perguntas e respostas para criar pares
 let cards = [];
 let selectedCards = [];
 let matchedCards = [];
 
 function createBoard() {
     const gameBoard = document.getElementById('game-board');
-    cards = [...cardsData.flatMap(card => [card.question, card.answer])] // Duplicar e criar pares
-        .sort(() => 0.5 - Math.random()); // Embaralhar
 
-    cards.forEach((text, index) => {
+    // Criar pares de cartas para perguntas e respostas
+    cards = cardsData.flatMap(card => [
+        { type: 'question', text: card.question },
+        { type: 'answer', text: card.answer }
+    ])
+    .sort(() => 0.5 - Math.random()); // Embaralhar
+
+    cards.forEach((card, index) => {
         const cardElement = document.createElement('div');
         cardElement.classList.add('card');
         
@@ -28,7 +32,7 @@ function createBoard() {
         
         const cardFront = document.createElement('div');
         cardFront.classList.add('card-front');
-        cardFront.innerHTML = `<div class="text">${text}</div>`;
+        cardFront.innerHTML = `<div class="text">${card.text}</div>`;
         
         const cardBack = document.createElement('div');
         cardBack.classList.add('card-back');
@@ -66,8 +70,12 @@ function checkMatch() {
     const text1 = card1.querySelector('.card-front .text').textContent;
     const text2 = card2.querySelector('.card-front .text').textContent;
 
-    if (cardsData.some(card => (card.question === text1 && card.answer === text2) ||
-                                (card.question === text2 && card.answer === text1))) {
+    const isMatch = cardsData.some(card =>
+        (card.question === text1 && card.answer === text2) ||
+        (card.question === text2 && card.answer === text1)
+    );
+
+    if (isMatch) {
         matchedCards.push(text1, text2);
         selectedCards = [];
     } else {
