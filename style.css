@@ -63,9 +63,8 @@ h1 {
     background-color: #004d40; /* Verde escuro para o verso */
     color: white;
     transform: rotateY(180deg); /* Mantém o verso virado */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-image: url('amazonia-pattern.png'); /* Imagem decorativa da Amazônia */
+    background-size: cover;
     font-size: 18px; /* Texto maior para o verso */
 }
 
@@ -80,4 +79,3 @@ h1 {
     display: block;
     margin-top: 5px;
 }
-
