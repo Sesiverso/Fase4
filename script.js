@@ -17,6 +17,7 @@ function createBoard() {
     const gameBoard = document.getElementById('game-board');
     cards = [...cardsData, ...cardsData] // Duplicar para criar pares
         .sort(() => 0.5 - Math.random()); // Embaralhar
+
     cards.forEach((card, index) => {
         const cardElement = document.createElement('div');
         cardElement.classList.add('card');
@@ -39,6 +40,13 @@ function createBoard() {
         cardElement.addEventListener('click', flipCard);
         gameBoard.appendChild(cardElement);
     });
+
+    // Remove animação de flip após a animação inicial
+    setTimeout(() => {
+        document.querySelectorAll('.card').forEach(card => {
+            card.style.animation = 'none';
+        });
+    }, 1000); // Tempo da animação
 }
 
 function flipCard() {
