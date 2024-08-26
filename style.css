@@ -1,22 +1,15 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-image: url('https://media.istockphoto.com/id/1335414067/pt/vetorial/tropical-jungle-landscape-amazon-forest-with-green-foliage-exotic-plants-waterfall-vector.jpg?s=612x612&w=0&k=20&c=YZ5wP7csJhQ-HDPJnzhi_F6cLpxx5g9hH1CniiI-x1g=');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    color: #333;
-    margin: 0; /* Remove a margem padrão do body */
-    overflow-x: hidden; /* Impede rolagem horizontal */
-    overflow-y: auto; /* Permite rolagem vertical */
-    min-height: 100vh; /* Garante que o body tenha pelo menos a altura da tela */
-    box-sizing: border-box; /* Inclui padding e bordas no tamanho total do elemento */
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Para evitar scroll causado pela animação das cartas */
 }
 
 h1 {
     margin-top: 20px;
-    color: #fff;
-    text-shadow: 3px 3px #333;
+    color: #333;
 }
 
 #game-board {
@@ -25,14 +18,13 @@ h1 {
     gap: 10px;
     margin: 20px auto;
     max-width: 500px;
+    perspective: 1000px; /* Cria um espaço 3D para as cartas */
 }
 
 .card {
     width: 120px;
     height: 120px;
-    perspective: 1000px;
-    cursor: pointer;
-    transition: transform 0.6s;
+    perspective: 1000px; /* Cria um espaço 3D para a carta */
 }
 
 .card-inner {
@@ -40,6 +32,8 @@ h1 {
     height: 100%;
     position: relative;
     transform-style: preserve-3d;
+    transition: transform 0.6s ease-in-out;
+    transform: rotateY(0deg);
 }
 
 .card.show .card-inner {
@@ -81,16 +75,18 @@ h1 {
     border-radius: 5px;
 }
 
-#footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    font-size: 14px;
-    box-shadow: 0 -3px 5px rgba(0, 0, 0, 0.3);
+@keyframes flip {
+    0% {
+        transform: rotateY(0deg);
+    }
+    50% {
+        transform: rotateY(90deg);
+    }
+    100% {
+        transform: rotateY(180deg);
+    }
 }
 
+.card.flip .card-inner {
+    animation: flip 0.6s forwards;
+}
