@@ -19,15 +19,29 @@ function createBoard() {
     cards.forEach((word, index) => {
         const card = document.createElement('div');
         card.classList.add('card');
-        card.dataset.word = word;
-        card.innerHTML = `<div class="text">${word}</div>`;
+        
+        const cardInner = document.createElement('div');
+        cardInner.classList.add('card-inner');
+        
+        const cardFront = document.createElement('div');
+        cardFront.classList.add('card-front');
+        cardFront.innerHTML = `<div class="text">${word}</div>`;
+        
+        const cardBack = document.createElement('div');
+        cardBack.classList.add('card-back');
+        cardBack.innerHTML = 'Amazônia';
+        
+        cardInner.appendChild(cardFront);
+        cardInner.appendChild(cardBack);
+        card.appendChild(cardInner);
+        
         card.addEventListener('click', flipCard);
         gameBoard.appendChild(card);
     });
 }
 
 function flipCard() {
-    if (selectedCards.length < 2) {
+    if (selectedCards.length < 2 && !this.classList.contains('show')) {
         this.classList.add('show');
         selectedCards.push(this);
 
@@ -39,8 +53,11 @@ function flipCard() {
 
 function checkMatch() {
     const [card1, card2] = selectedCards;
-    if (card1.dataset.word === card2.dataset.word) {
-        matchedCards.push(card1.dataset.word);
+    const text1 = card1.querySelector('.card-front .text').textContent;
+    const text2 = card2.querySelector('.card-front .text').textContent;
+
+    if (text1 === text2) {
+        matchedCards.push(text1);
         selectedCards = [];
     } else {
         setTimeout(() => {
