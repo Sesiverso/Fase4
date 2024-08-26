@@ -19,6 +19,8 @@ h1 {
     margin: 20px auto;
     max-width: 500px;
     perspective: 1000px; /* Cria um espaço 3D para as cartas */
+    position: relative; /* Para garantir que o fundo se ajuste ao game-board */
+    z-index: 1; /* Garante que o conteúdo do jogo esteja acima da imagem de fundo */
 }
 
 .card {
@@ -89,4 +91,9 @@ h1 {
 
 .card.flip .card-inner {
     animation: flip 0.6s forwards;
+}
+
+body {
+    background: url('https://media.istockphoto.com/id/1335414067/pt/vetorial/tropical-jungle-landscape-amazon-forest-with-green-foliage-exotic-plants-waterfall-vector.jpg?s=612x612&w=0&k=20&c=YZ5wP7csJhQ-HDPJnzhi_F6cLpxx5g9hH1CniiI-x1g=') no-repeat center center fixed;
+    background-size: cover; /* Faz a imagem cobrir toda a área do body */
 }
