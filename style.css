@@ -1,12 +1,12 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #f4f4f4;
+    background-color: #e0f2f1; /* Cor de fundo clara com tom tropical */
 }
 
 h1 {
     margin-top: 20px;
-    color: #333;
+    color: #004d40; /* Verde escuro da Amazônia */
 }
 
 #game-board {
@@ -56,22 +56,21 @@ h1 {
 }
 
 .card-front {
-    background-color: #a5d6a7; /* Verde claro */
-    color: #004d40; /* Verde escuro */
+    background-color: #a5d6a7; /* Verde claro da Amazônia */
 }
 
 .card-back {
-    background-color: #004d40; /* Verde escuro */
-    color: #ffffff;
+    background-color: #004d40; /* Verde escuro para o verso */
+    color: white;
     transform: rotateY(180deg);
-    font-size: 18px; /* Texto maior para o verso */
-    background-image: url('amazon-pattern.png'); /* Imagem decorativa da Amazônia */
+    background-image: url('amazonia-pattern.png'); /* Imagem decorativa da Amazônia */
     background-size: cover;
+    font-size: 18px; /* Texto maior para o verso */
 }
 
 .card.matched .card-inner {
-    background-color: #ffffff;
-    color: #000000;
+    background-color: #fff;
+    color: #000;
 }
 
 .card img {
