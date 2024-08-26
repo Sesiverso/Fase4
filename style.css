@@ -22,6 +22,7 @@ h1 {
     height: 120px;
     perspective: 1000px; /* Adicionado para efeito 3D */
     cursor: pointer;
+    animation: flipIn 1s forwards; /* Animação inicial */
 }
 
 .card-inner {
@@ -79,4 +80,14 @@ h1 {
     max-height: 80px;
     display: block;
     margin-top: 5px;
+}
+
+/* Animação para girar as cartas */
+@keyframes flipIn {
+    from {
+        transform: rotateY(180deg);
+    }
+    to {
+        transform: rotateY(0deg);
+    }
 }
