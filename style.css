@@ -57,5 +57,5 @@ h1 {
 .card-back {
     background-color: #ffffff;
     color: #000000;
-    transform: rotateY(180deg);
+    transform: rotateY(180deg); /* Mantém a parte de trás visível inicialmente */
 }
